@@ -23,11 +23,11 @@ struct ClosureFactory {
     typedef typename CB_RR(FUNCTYPE) FUNC;
 
     static void copy(const void *src, uint8_t *dst) {
-        new (dst) FUNC(*(const FUNC*) src);
+        new (dst) FUNC(*static_cast<const FUNC*>(src));
     }
 
     static void move(void *src, uint8_t *dst) noexcept {
-        new (dst) FUNC(CB_FORWARD(FUNC, (*(FUNC*) src)));
+        new (dst) FUNC(CB_FORWARD(FUNC, *static_cast<FUNC*>(src)));
     }
 
     static void destroy(void *obj) noexcept {
@@ -160,7 +160,7 @@ public:
         static_assert(sizeof(f) <= SIZE, "Functor size exceeds closure storage");
 
         if (m_vtable)
-            m_vtable->destroy();
+            m_vtable->destroy(m_object);
 
         new (m_object) typename ClosureFactory<FUNCTYPE>::FUNC(std::forward<FUNCTYPE>(f));
         m_vtable = get_vtable<FUNCTYPE>();

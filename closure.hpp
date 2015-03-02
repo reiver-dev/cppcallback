@@ -324,7 +324,7 @@ public:
     }
 
     explicit operator bool() const {
-        return m_vtable != 0 ? true : false;
+        return m_vtable != nullptr ? true : false;
     }
 
     R operator()(ARGS ... args) const {

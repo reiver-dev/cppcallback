@@ -186,7 +186,6 @@ public:
         using FUNC = remove_reference_t<FUNCTYPE>;
 
         static_assert(check_signature<FUNC, R, ARGS...>::value, "Signature does not match");
-        static_assert(!is_same<FUNC, this_type>::value, "Inefficient constructor called");
         static_assert(sizeof(FUNC) <= SIZE && alignof(FUNC) <= SIZE, "Functor size exceeds closure storage");
 
         new (__alloc, m_object) FUNC(CB_FORWARD(FUNCTYPE, f));

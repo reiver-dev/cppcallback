@@ -19,3 +19,7 @@ D create_delegate(Value &v)
     return d;
 }
 
+E create_delegate_freefunction() {
+    E d = CB_DELEGATE_FF(increment);
+    return d;
+}

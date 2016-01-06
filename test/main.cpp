@@ -60,8 +60,12 @@ int main(int argc, char **argv)
         printf("%d\n", b3(5));
 
     }
+    {
+        printf("\n");
+        E d = create_delegate_freefunction();
+        int val = 41;
+        printf("%d %d\n",d(val), val);
+    }
 
     return 0;
 }
-
-

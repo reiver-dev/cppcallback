@@ -154,7 +154,7 @@ using detail::Delegate;
 #undef CB_FORWARD
 
 #define __CB_DELEGATE_INIT(instance, func) decltype(CB::detail::create_delegate(func))::bind<func>(instance)
-#define __CB_DELEGATE_FF(func) decltype(CB::detail::create_delegate(func))::bind<func>()
+#define __CB_DELEGATE_INIT_FF(func) decltype(CB::detail::create_delegate(func))::bind<func>()
 #define CB_DELEGATE_INIT __CB_DELEGATE_INIT
 #define CB_DELEGATE_FF __CB_DELEGATE_INIT_FF
 
